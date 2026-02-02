@@ -24,10 +24,10 @@ def predict_airfoil_properties(model, naca_code, num_points=100, device='cpu'):
     model.eval()
     
     # Generate airfoil geometry
-    x, y_u, y_l, x_u, y_u, x_l, y_l = generate_naca_airfoil(naca_code, num_points)
+    _, _, _, x_upper, y_upper, x_lower, y_lower = generate_naca_airfoil(naca_code, num_points)
     
     # Convert to graph
-    graph = airfoil_to_graph(x_u, y_u, x_l, y_l)
+    graph = airfoil_to_graph(x_upper, y_upper, x_lower, y_lower)
     graph = graph.to(device)
     
     # Make prediction
